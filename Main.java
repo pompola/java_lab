@@ -1,5 +1,7 @@
 import java.util.Scanner;
 import static java.lang.Math.abs;
+import java.util.Random;
+
 public class Main {
     public static void main(String[] args) {
         Main m = new Main();
