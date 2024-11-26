@@ -332,7 +332,40 @@ public class main {
                 break;
 
             case 32:
+//Пример 1: Фильтрация строк по длине
+                List<String> strings = Arrays.asList("qwerty", "asdfg", "zx", "abcde");
+                List<String> filteredStrings = filterList(strings, str -> str.length() >= 3);
+                System.out.println("Отфильтрованные строки (длина >= 3): " + filteredStrings);
 
+
+                //Пример 2: Фильтрация чисел (положительные)
+                List<Integer> numbers = Arrays.asList(1, -3, 7, -10, 5);
+                List<Integer> filteredNumbers = filterList(numbers, num -> num <= 0);
+                System.out.println("Отфильтрованные числа (неположительные): " + filteredNumbers);
+
+
+                //Пример 3: Фильтрация массивов (без положительных элементов)
+
+                List<int[]> intArrays = new ArrayList<>();
+                intArrays.add(new int[]{-1, -2, -3});
+                intArrays.add(new int[]{1, 2, 3});
+                intArrays.add(new int[]{-5, 0, -1});
+                intArrays.add(new int[]{}); //Добавлен пустой массив для проверки
+
+                List<int[]> filteredArrays = filterList(intArrays, arr -> {
+                    for (int num : arr) {
+                        if (num > 0) {
+                            return false; // Нашли положительный элемент - массив не подходит
+                        }
+                    }
+                    return true; // Все элементы неположительные или массив пустой
+                });
+                System.out.println("Отфильтрованные массивы (без положительных элементов):");
+                for (int[] arr : filteredArrays) {
+                    System.out.println(Arrays.toString(arr));
+                }
+
+                scanner.close();
                 break;
 
             case 33:
@@ -400,5 +433,17 @@ public class main {
             result.add(function.apply(item));
         }
         return result;
+    }
+    interface TestCondition<T> {
+        boolean test(T value);
+    }
+    public static <T> List<T> filterList(List<T> list, TestCondition<T> condition) {
+        List<T> filteredList = new ArrayList<>();
+        for (T item : list) {
+            if (condition.test(item)) {
+                filteredList.add(item);
+            }
+        }
+        return filteredList;
     }
 }
