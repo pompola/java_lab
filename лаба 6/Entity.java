@@ -71,7 +71,6 @@ class G extends D {
     @ToString(ToString.Value.YES)
     String text = "G";
 
-    String anotherField = "some data";
 }
 
 @ToString(ToString.Value.NO)
